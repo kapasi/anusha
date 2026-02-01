@@ -7,14 +7,15 @@ function createRain() {
     // Clear existing raindrops
     rainOverlay.innerHTML = '';
     
-    // Create multiple raindrops
-    for (let i = 0; i < 100; i++) {
+    // Create multiple raindrops with varying intensities
+    for (let i = 0; i < 200; i++) {
         const raindrop = document.createElement('div');
-        raindrop.className = 'raindrop';
+        const isHeavy = Math.random() > 0.7;
+        raindrop.className = isHeavy ? 'raindrop heavy-raindrop' : 'raindrop';
         raindrop.style.left = Math.random() * 100 + '%';
-        raindrop.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+        raindrop.style.animationDuration = (Math.random() * 0.8 + 0.3) + 's';
         raindrop.style.animationDelay = Math.random() * 2 + 's';
-        raindrop.style.height = (Math.random() * 50 + 10) + 'px';
+        raindrop.style.height = (Math.random() * 80 + 20) + 'px';
         rainOverlay.appendChild(raindrop);
     }
 }
@@ -42,25 +43,31 @@ function shakeModal() {
 }
 
 function handleNo() {
-    // Start rain effect
+    // Change page to sad/blue mode
+    document.body.classList.add('sad-mode');
+    
+    // Start dramatic rain effect
     startRain();
     
     // Shake the modal
     shakeModal();
+    
+    // Show custom sad image
+    setCustomNoImage('sad.png');
     
     // Show error content after a brief delay
     setTimeout(() => {
         document.getElementById('questionContent').style.display = 'none';
         document.getElementById('errorContent').style.display = 'block';
     }, 300);
-    
-    // Add some dramatic sound effect (optional - browser will handle this)
-    // You could add an audio element here if desired
 }
 
 function handleYes() {
     // Hide question content
     document.getElementById('questionContent').style.display = 'none';
+    
+    // Show custom happy image
+    setCustomYesImage('happy.png');
     
     // Show success content
     document.getElementById('successContent').style.display = 'block';
@@ -75,8 +82,14 @@ function handleYes() {
 }
 
 function goBack() {
+    // Remove sad mode
+    document.body.classList.remove('sad-mode');
+    
     // Stop rain
     stopRain();
+    
+    // Hide custom images
+    document.getElementById('customNoImage').style.display = 'none';
     
     // Hide error content
     document.getElementById('errorContent').style.display = 'none';
@@ -151,3 +164,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 50);
 });
+
+// Functions to handle custom images
+function setCustomYesImage(imagePath) {
+    const customYesImage = document.getElementById('customYesImage');
+    const img = customYesImage.querySelector('.custom-image');
+    img.src = imagePath;
+    customYesImage.style.display = 'block';
+}
+
+function setCustomNoImage(imagePath) {
+    const customNoImage = document.getElementById('customNoImage');
+    const img = customNoImage.querySelector('.custom-image');
+    img.src = imagePath;
+    customNoImage.style.display = 'block';
+}
+
+// Example usage (you can call these functions when you have the images):
+// Images are now automatically loaded when buttons are clicked
+// happy.png will show when "Yes" is clicked
+// sad.png will show when "No" is clicked

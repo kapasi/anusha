@@ -13,6 +13,11 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    transition: background 0.8s ease;
+}
+
+body.sad-mode {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #5dade2 100%);
 }
 
 .container {
@@ -153,9 +158,49 @@ h1 {
 }
 
 .happy-cat-gif {
-    max-width: 200px;
+    max-width: 250px;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: happyBounce 1s ease-in-out infinite;
+}
+
+@keyframes happyBounce {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.05) rotate(-2deg); }
+    75% { transform: scale(1.05) rotate(2deg); }
+}
+
+.custom-image {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    transition: transform 0.3s ease;
+}
+
+.custom-image:hover {
+    transform: scale(1.05);
+}
+
+.custom-yes-image .custom-image {
+    animation: celebrateImage 2s ease-in-out infinite;
+}
+
+@keyframes celebrateImage {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+}
+
+.custom-no-image .custom-image {
+    animation: sadImage 1.5s ease-in-out infinite;
+    filter: grayscale(50%) brightness(0.8);
+}
+
+@keyframes sadImage {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.95); }
 }
 
 .signature {
@@ -180,6 +225,7 @@ h1 {
     z-index: 1;
     opacity: 0;
     transition: opacity 0.5s ease;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .rain-overlay.active {
@@ -188,17 +234,33 @@ h1 {
 
 .raindrop {
     position: absolute;
-    background: linear-gradient(transparent, rgba(255, 255, 255, 0.6), transparent);
-    width: 2px;
+    background: linear-gradient(transparent, rgba(135, 206, 250, 0.8), rgba(100, 149, 237, 0.9), transparent);
+    width: 3px;
+    border-radius: 50px;
     animation: fall linear infinite;
+    box-shadow: 0 0 6px rgba(135, 206, 250, 0.5);
+}
+
+.heavy-raindrop {
+    background: linear-gradient(transparent, rgba(70, 130, 180, 0.9), rgba(25, 25, 112, 1), transparent);
+    width: 4px;
+    box-shadow: 0 0 10px rgba(70, 130, 180, 0.7);
 }
 
 @keyframes fall {
     0% {
-        transform: translateY(-100vh);
+        transform: translateY(-100vh) rotate(10deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
     }
     100% {
-        transform: translateY(100vh);
+        transform: translateY(100vh) rotate(10deg);
+        opacity: 0;
     }
 }
 
