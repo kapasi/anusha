@@ -52,10 +52,7 @@ function handleNo() {
     // Shake the modal
     shakeModal();
     
-    // Show custom sad image
-    setCustomNoImage('sad.png');
-    
-    // Show error content after a brief delay
+    // Show error content after a brief delay (custom image is already visible)
     setTimeout(() => {
         document.getElementById('questionContent').style.display = 'none';
         document.getElementById('errorContent').style.display = 'block';
@@ -66,10 +63,7 @@ function handleYes() {
     // Hide question content
     document.getElementById('questionContent').style.display = 'none';
     
-    // Show custom happy image
-    setCustomYesImage('happy.png');
-    
-    // Show success content
+    // Show success content (custom image is already visible)
     document.getElementById('successContent').style.display = 'block';
     
     // Stop rain if it's active
@@ -87,9 +81,6 @@ function goBack() {
     
     // Stop rain
     stopRain();
-    
-    // Hide custom images
-    document.getElementById('customNoImage').style.display = 'none';
     
     // Hide error content
     document.getElementById('errorContent').style.display = 'none';

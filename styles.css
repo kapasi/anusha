@@ -157,6 +157,26 @@ h1 {
     margin: 20px 0;
 }
 
+.home-cat-gif {
+    max-width: 120px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: floatCat 2s ease-in-out infinite;
+}
+
+@keyframes floatCat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.sad-cat-gif {
+    max-width: 200px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: sadBounce 1s ease-in-out infinite;
+    filter: grayscale(30%);
+}
+
 .happy-cat-gif {
     max-width: 250px;
     border-radius: 15px;
