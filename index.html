@@ -9,6 +9,25 @@
 <body>
     <div class="rain-overlay" id="rainOverlay"></div>
     
+    <!-- Letter bubble -->
+    <div class="letter-bubble" id="letterBubble" onclick="openLetter()">
+        💌
+    </div>
+    
+    <!-- Letter modal -->
+    <div class="letter-modal" id="letterModal" onclick="closeLetter()">
+        <div class="letter-content" onclick="event.stopPropagation()">
+            <div class="letter-header">
+                <h3>Daily Letter</h3>
+                <span class="close-letter" onclick="closeLetter()">&times;</span>
+            </div>
+            <div class="letter-body" id="letterBody">
+                Loading...
+            </div>
+            <div class="letter-date" id="letterDate"></div>
+        </div>
+    </div>
+    
     <div class="container">
         <div class="modal" id="modal">
             <div class="question-content" id="questionContent">

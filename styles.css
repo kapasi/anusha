@@ -300,6 +300,123 @@ h1 {
     }
 }
 
+/* Letter bubble */
+.letter-bubble {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    transition: all 0.3s ease;
+    animation: letterFloat 3s ease-in-out infinite;
+}
+
+.letter-bubble:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+@keyframes letterFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Letter modal */
+.letter-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.letter-modal.active {
+    display: flex;
+}
+
+.letter-content {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe0e6 100%);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 182, 193, 0.3);
+    position: relative;
+    animation: letterSlideIn 0.3s ease-out;
+}
+
+@keyframes letterSlideIn {
+    0% {
+        transform: scale(0.8) translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.letter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 182, 193, 0.3);
+    padding-bottom: 15px;
+}
+
+.letter-header h3 {
+    color: #d63384;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.close-letter {
+    font-size: 2em;
+    color: #d63384;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.close-letter:hover {
+    color: #e17055;
+}
+
+.letter-body {
+    color: #5a5a5a;
+    line-height: 1.6;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.letter-date {
+    text-align: right;
+    color: #d63384;
+    font-style: italic;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
 /* Responsive design */
 @media (max-width: 600px) {
     .modal {

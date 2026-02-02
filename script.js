@@ -175,3 +175,52 @@ function setCustomNoImage(imagePath) {
 // Images are now automatically loaded when buttons are clicked
 // happy.png will show when "Yes" is clicked
 // sad.png will show when "No" is clicked
+
+// Letter functionality
+function getTodayDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function formatDisplayDate(dateString) {
+    const date = new Date(dateString);
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    return date.toLocaleDateString('en-US', options);
+}
+
+async function loadTodaysLetter() {
+    const todayDate = getTodayDate();
+    const letterPath = `letters/${todayDate}.txt`;
+    
+    try {
+        const response = await fetch(letterPath);
+        if (response.ok) {
+            const letterText = await response.text();
+            document.getElementById('letterBody').textContent = letterText;
+            document.getElementById('letterDate').textContent = formatDisplayDate(todayDate);
+        } else {
+            document.getElementById('letterBody').textContent = "No letter for today yet... but there will be one soon! 💕";
+            document.getElementById('letterDate').textContent = formatDisplayDate(todayDate);
+        }
+    } catch (error) {
+        document.getElementById('letterBody').textContent = "No letter for today yet... but there will be one soon! 💕";
+        document.getElementById('letterDate').textContent = formatDisplayDate(todayDate);
+    }
+}
+
+function openLetter() {
+    document.getElementById('letterModal').classList.add('active');
+    loadTodaysLetter();
+}
+
+function closeLetter() {
+    document.getElementById('letterModal').classList.remove('active');
+}
