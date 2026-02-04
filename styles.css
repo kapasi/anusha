@@ -300,6 +300,42 @@ h1 {
     }
 }
 
+/* Celebration watermark */
+.celebration-watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 12vw;
+    font-weight: 900;
+    color: rgba(255, 182, 193, 0.6);
+    text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.4);
+    pointer-events: none;
+    z-index: 1;
+    white-space: nowrap;
+    user-select: none;
+    font-family: 'Arial Black', Arial, sans-serif;
+    letter-spacing: 0.1em;
+    animation: celebrationPulse 4s ease-in-out infinite;
+}
+
+@keyframes celebrationPulse {
+    0%, 100% { 
+        opacity: 0.6;
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1.02);
+    }
+}
+
+/* Make sure other elements are above the watermark */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
 /* Letter bubble */
 .letter-bubble {
     position: fixed;
@@ -419,6 +455,11 @@ h1 {
 
 /* Responsive design */
 @media (max-width: 600px) {
+    .celebration-watermark {
+        font-size: 16vw;
+        transform: translate(-50%, -50%) rotate(-20deg);
+    }
+    
     .modal {
         padding: 30px 20px;
         margin: 20px;
